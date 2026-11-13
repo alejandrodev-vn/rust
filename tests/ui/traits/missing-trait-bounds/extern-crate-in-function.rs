@@ -1,0 +1,14 @@
+//@ edition: 2018
+//@ aux-crate: num=num.rs
+//@ run-rustfix
+
+#![allow(dead_code)]
+
+fn main() {
+    extern crate num;
+
+    struct F<T: num::Integer>(T);
+
+    fn foo<T>(_: F<T>) {}
+    //~^ ERROR the trait bound `T: Integer` is not satisfied
+}

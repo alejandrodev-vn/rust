@@ -1,0 +1,19 @@
+error[E0277]: the trait bound `T: Integer` is not satisfied
+  --> $DIR/extern-crate-in-function.rs:12:18
+   |
+LL |     fn foo<T>(_: F<T>) {}
+   |                  ^^^^ the trait `Integer` is not implemented for `T`
+   |
+note: required by a bound in `F`
+  --> $DIR/extern-crate-in-function.rs:10:17
+   |
+LL |     struct F<T: num::Integer>(T);
+   |                 ^^^^^^^^^^^^ required by this bound in `F`
+help: consider restricting type parameter `T` with trait `Integer`
+   |
+LL |     fn foo<T: num::Integer>(_: F<T>) {}
+   |             ++++++++++++++
+
+error: aborting due to 1 previous error
+
+For more information about this error, try `rustc --explain E0277`.
